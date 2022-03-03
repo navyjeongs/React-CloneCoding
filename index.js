@@ -11,9 +11,12 @@ const express = require('express')  // express 모듈 가져옴
 const app = express()   // 새로운 express App을 만든다.
 const port = 5000   // back Server
 
+const config = require("./config/key");
+
+
 
 const mongoose = require('mongoose')
-mongoose.connect(mongourl1)
+mongoose.connect(config.MongoURI)
 
 
 
