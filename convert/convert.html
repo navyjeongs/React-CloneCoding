@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- React -->
+    <script src ="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script> 
+    <script src ="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src ="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- react 규칙 : html에 작성하지 않는다. -->
+    <div id = "converter"></div>
+
+
+
+    <script type ="text/babel">
+    const convert = document.getElementById("converter"); 
+
+
+    const MinToHour = () => {
+        const [mins, setMinutes] = React.useState(0);   
+                                                        
+        const onChangefunc = (event) => {
+            setMinutes(event.target.value); 
+        }
+
+        const resetfunc = () => {
+            setMinutes(0);
+        }
+
+        const [flipped, setFliped] = React.useState(false); 
+
+        const onFlipfunc = () => {
+            resetfunc();
+            setFliped(current => !current);
+        }
+
+   
+        return(
+        
+        <div>
+            <h4>Min To Hour</h4>   
+            <div>
+                <lable htmlFor ="mintues">Minutes</lable>
+                <input 
+                    value = {flipped ? mins * 60 : mins}    
+                    id ="mintues" 
+                    placeholder="Minutes"
+                    type = "number"
+                    onChange={onChangefunc} 
+                    disabled = {flipped}
+                 />
+            </div>
+            
+            <div>
+                <h4>You want convert {mins}</h4>
+                <lable htmlFor ="hours">Hours</lable>
+                <input 
+                    value = {flipped ? mins : mins / 60} 
+                    id ="hours" 
+                    placeholder="Hours"
+                    type = "number"
+                    onChange = {onChangefunc}
+                    disabled = {!flipped}
+                    />
+            </div>
+
+            <button
+            onClick = {resetfunc}
+            >
+            Reset
+            </button>
+
+            <button
+            onClick={onFlipfunc}
+            >
+            Flip
+            </button>
+        </div>
+        );
+    };
+
+    const KmToMile = () => {
+
+        const [text, changeText] = React.useState(0);
+
+        const [dis, flip] = React.useState(false);
+
+        const changeTextfunc = (event) => {
+           changeText(event.target.value);
+        }
+
+        const resetfunc = () => {
+            changeText(0);
+        }
+
+        const flipfunc = () => {
+            resetfunc();
+            flip(current => !current)
+        }
+
+
+        return(
+            <div>
+                <h4>Km to Mile</h4>
+                <span>
+                    <label htmlFor = "km">Km</label>
+
+                    <input 
+                    type = "number" 
+                    value = {dis === false ? text : text *1.609344}
+                    onChange = {changeTextfunc}
+                    disabled = {dis}
+                    >
+                    </input> 
+
+                    <br></br>
+                    <h4>You want Convert {text}</h4>
+                    <lable htmlFor ="mile">Mile</lable>
+
+                    <input 
+                    type = "number" 
+                    value = {!dis === false ? text : text * 0.621371}
+                    onChange = {changeTextfunc}
+                    disabled = {!dis}
+                    >
+                    </input>
+
+                </span>
+                <br></br>
+
+                <button
+                onClick ={resetfunc}>
+                Reset
+                </button>
+
+                <button
+                onClick = {flipfunc}>Flip
+                </button>
+
+            </div>
+        );
+    }
+
+
+
+
+
+
+    const App = () => {
+
+        const [index, setIndex] = React.useState();
+
+        const listfunc = (event) => {
+            setIndex(event.target.value);
+        }
+
+
+        return(
+            <div>
+                <h1> What you want Convert ? </h1>
+                <select value = {index} onChange = {listfunc}>
+                    <option value ="init">Select What you Convert?</option>
+                    <option value ="0">Min To Hour</option>
+                    <option value ="1">Km To Mile</option>    
+                </select>
+                {index === "0" ? <MinToHour /> : null}
+                {index === "1" ? <KmToMile /> : null}
+            </div>
+        );
+
+    }
+
+
+    ReactDOM.render(<App />, convert);
+
+    </script>
+
+</body>
+</html>
