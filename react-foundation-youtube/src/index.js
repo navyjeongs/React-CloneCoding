@@ -9,6 +9,7 @@ import "./index.css";
 // 모든 js 파일은 모듈이다.
 // Part1 : #1 ~ #9
 
+// npm install react-router-dom : 라우터 설치
 
 ReactDOM.render(
   <div>
