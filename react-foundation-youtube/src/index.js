@@ -12,14 +12,13 @@ import "./index.css";
 
 // npm install react-router-dom : 라우터 설치
 
-
 // npm install -g json-server
 // json-server --watch ./src/db/data.json --port 3001
 // Rest API : url 주소와 method로 CRUD 요청
-// C : POST
-// R : GET
-// U : PUT
-// D : DELETE
+// Create : POST
+// Read : GET
+// Update : PUT
+// Delete : DELETE
 
 ReactDOM.render(
   <div>
