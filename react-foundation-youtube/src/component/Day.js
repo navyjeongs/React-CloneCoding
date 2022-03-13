@@ -2,6 +2,7 @@ import dummy from "../db/data.json";
 import { useParams } from "react-router-dom";
 import Word from "./Word";
 import { useEffect, useState } from "react";
+import useFetch from "../hooks/useFetch";
 
 export default function Day() {
   
@@ -14,17 +15,18 @@ export default function Day() {
 
     // const wordList = dummy.words.filter(word => (word.day === Number(day))) 더미 데이터이므로 지우기
 
-    const [words, setWords] = useState([]);
+    const words = useFetch(`http://localhost:3001/words?day=${day}`);
+    // const [words, setWords] = useState([]);
 
-    useEffect(() => {
-        fetch(`http://localhost:3001/words?day=${day}`) // words 전체를 가져온다.
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            setWords(data);
-        })
-    }, [day]);
+    // useEffect(() => {
+    //     fetch(`http://localhost:3001/words?day=${day}`) // words 전체를 가져온다.
+    //     .then(res => {
+    //         return res.json();
+    //     })
+    //     .then(data => {
+    //         setWords(data);
+    //     })
+    // }, [day]);
 
     return(
     <>

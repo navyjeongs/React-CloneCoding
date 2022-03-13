@@ -1,21 +1,24 @@
 // import dummy from "../db/data.json" : REST API, json-server 설치 시 필요없음
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 export default function DayList(){
 
-    const [days, setDays] = useState([]); // 처음에는 빈 배열로 만들고 API에서 리스트를 가져와 바꾸는 방식
-                                          // 데이터가 바뀌면 자동 렌더링
+    const days = useFetch("http://localhost:3001/days");
 
-    useEffect(() => {
-        fetch("http://localhost:3001/days")
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            setDays(data);
-        })
-    }, []);
+    // const [days, setDays] = useState([]); // 처음에는 빈 배열로 만들고 API에서 리스트를 가져와 바꾸는 방식
+    //                                       // 데이터가 바뀌면 자동 렌더링
+
+    // useEffect(() => {
+    //     fetch("http://localhost:3001/days")
+    //     .then(res => {
+    //         return res.json();
+    //     })
+    //     .then(data => {
+    //         setDays(data);
+    //     })
+    // }, []);
 
 
     // const [count, setCount] = useState(0);
