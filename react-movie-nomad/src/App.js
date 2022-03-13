@@ -1,52 +1,48 @@
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
 
 export default function App() {
 
-  const [toDo, setToDo] = useState("");
-  const setToDofunc = (e) => {
-    setToDo(e.target.value);
-  }
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
 
-  // toDo List을 저장하는 배열 생성, 직접적으로 State를 변경하지 않으므로 push를 사용하지 않는다.
-  const [toDos, setToDos] = useState([]);
-
-
-  const onSubmitfunc = (e) => {
-    e.preventDefault();
-    if(toDo === ""){
-      return;
+    fetch("https://api.coinpaprika.com/v1/tickers?limit=100")
+    .then(response => response.json())
+    .then(coins => {
+      setCoins(coins);
+      setLoading(false);
     }
+    );
+  }, []);
 
-    // 함수를 보낼 때 첫 번째 argument로 현재 state를 보낸다.
-    // ...을 사용하게 되면 해당 배열의 원소를 가져온다. 즉, toDo와 currentArray를 합친다.
-    setToDos((currentArray) => [toDo, ...currentArray]);
 
-    setToDo("");
+  const [coins, setCoins] = useState([]);
+ 
+
+
+  // 코인 번호 매기기
+  var count = 0; 
+  const coinCount = () => {
+    count +=1;
+    return <>{count} </>
   }
 
-
-  
-
-
-  return(
+  // map은 element에 key를 줘야하는데 json에서 가져온 것의 id를 사용하면 된다.
+  // coin은 coins array에 있는 각각의 coin을 의미한다.
+  return (
     <div>
-      <h1>My To Dos ({toDos.length})</h1>
-      <form onSubmit={onSubmitfunc}>
-        <input onChange ={setToDofunc} 
-          value ={toDo}
-          type="text"
-          placeholder="Write Your ToDo!">
-        </input>
-        <button>Add To Do</button>
-      </form>
-
-      <li>
+      <h1>List of Coins! ({coins.length})</h1>
+      <hr />
+      {loading ? <strong>Loading...</strong> : null}
+      <dl>
         {
-          toDos.map(()=>( <li>toDos</li>))
+          coins.map((coin) =>
+            <li>
+              {coinCount()}
+              : {coin.name} ({coin.symbol} : ${coin.quotes.USD.price} USD)
+            </li>
+          )
         }
-      </li>
+      </dl>
     </div>
   );
 }
