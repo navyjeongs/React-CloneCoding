@@ -1,48 +1,31 @@
-import { useEffect, useState } from "react";
-
-export default function App() {
-
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-
-    fetch("https://api.coinpaprika.com/v1/tickers?limit=100")
-    .then(response => response.json())
-    .then(coins => {
-      setCoins(coins);
-      setLoading(false);
-    }
-    );
-  }, []);
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
 
 
-  const [coins, setCoins] = useState([]);
- 
+// Home route : 모든 영화를 보여줌, movie route : 영화 1개만 보여줌
+
+// App.js는 Route를 render를 한다.
+// router는 URL을 보고있는 component이다. URL에 따라 Home 또는 Detail을 보여준다.
 
 
-  // 코인 번호 매기기
-  var count = 0; 
-  const coinCount = () => {
-    count +=1;
-    return <>{count} </>
-  }
+// Switch -> Routes로 바뀜 
+// Routes : Route(URL)를 찾는 역할, 찾으면 컴포넌트를 렌더링함
+// Route에서 /movie를 작성했다면 Link를 통해 이동이 가능하게 작성해야한다.
 
-  // map은 element에 key를 줘야하는데 json에서 가져온 것의 id를 사용하면 된다.
-  // coin은 coins array에 있는 각각의 coin을 의미한다.
+
+
+// movie/:movieid : movieid변수의 경로로 유저를 보낼수 있다.
+
+function App() {
   return (
-    <div>
-      <h1>List of Coins! ({coins.length})</h1>
-      <hr />
-      {loading ? <strong>Loading...</strong> : null}
-      <dl>
-        {
-          coins.map((coin) =>
-            <li>
-              {coinCount()}
-              : {coin.name} ({coin.symbol} : ${coin.quotes.USD.price} USD)
-            </li>
-          )
-        }
-      </dl>
-    </div>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/movie/:movieid" element={<Detail />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
+
+export default App;
