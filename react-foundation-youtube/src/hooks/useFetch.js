@@ -7,7 +7,7 @@ export default function useFetch(url){
 
     
     useEffect(() => {
-        fetch(url) // words 전체를 가져온다.
+        fetch(url) // words 전체를 가져옴
         .then(res => {
             return res.json();
         })
