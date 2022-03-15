@@ -26,7 +26,6 @@ export default function Detail(){
     const [load, setLoad] = useState(true);
   
 
-
     useEffect( () => {
         getMovie();
     }, []);
