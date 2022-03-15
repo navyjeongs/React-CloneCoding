@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 
 // Link는 새로고침 없이 페이지 이동을 해준다.
+
 export default function Movie({id, coverImage, title, summary, genres}){
     return(
         <div>
