@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
-
+import Headers from "./routes/Header";
 
 // Home route : 모든 영화를 보여줌, movie route : 영화 1개만 보여줌
 
@@ -20,6 +20,7 @@ import Detail from "./routes/Detail";
 function App() {
   return (
   <BrowserRouter>
+    <Headers />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/movie/:movieid" element={<Detail />} />

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Movie({id, coverImage, title, summary, genres}){
     return(
         <div>
-        <img src ={coverImage} alt={title}></img>
+          <Link to={`/movie/${id}`}><img src ={coverImage} alt={title}></img></Link>
         <h2>
           <Link to={`/movie/${id}`}>{title}</Link>
         </h2>
@@ -17,6 +17,7 @@ export default function Movie({id, coverImage, title, summary, genres}){
             <li key ={g}>{g}</li>
           ))}
         </ul>
+        <hr></hr>
       </div>
     );
 }

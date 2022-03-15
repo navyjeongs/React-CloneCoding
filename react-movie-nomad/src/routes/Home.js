@@ -20,7 +20,7 @@ export default function Home(){
     //위와 같은 표현이다.
     const getMovies = async() => {
       const response = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.8&sort_by=year`
+        `https://yts.mx/api/v2/list_movies.json?minimum_rating=8.3&sort_by=year`
       );
       const json = await response.json();
       setMovies(json.data.movies);
@@ -50,6 +50,7 @@ export default function Home(){
             summary={movie.summary} genres={movie.genres}
             />
           )}
+          
           </div>
         }
       </div>
