@@ -15,7 +15,8 @@ import Headers from "./routes/Header";
 
 
 
-// movie/:movieid : movieid변수의 경로로 유저를 보낼수 있다.
+// movie/:movieid : movieid변수의 경로로 유저를 보낼수 있다. 
+
 
 function App() {
   return (
