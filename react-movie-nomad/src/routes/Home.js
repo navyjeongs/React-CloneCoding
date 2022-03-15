@@ -35,7 +35,6 @@ export default function Home(){
   
     // key : map에서 컴포넌트를 render시 사용
   
-
   
     return(
       <div>
