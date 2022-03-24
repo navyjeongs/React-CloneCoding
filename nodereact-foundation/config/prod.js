@@ -1,5 +1,5 @@
-module.exports={
+// 배포모드일때는 헤로쿠에서 가져온다.
 
-    mongoURI : process.env.MONGO_URI// 헤로쿠 사이트의 키값과 일치 시키기 
-
-}
+module.exports = {
+  mongoURI: process.env.MONGO_URI,
+};
