@@ -1,2 +1,5 @@
 ### mongo ###
 /config/dev.js
+
+### node module ###
+node_modules
