@@ -1,0 +1,12 @@
+<기본 설치 패키지>
+npm install express --save : express 라이브러리 설치
+npm install mongoose --save : 몽고 DB를 편하게 사용할 수 있는 Tool, package.json의 "dependencies"에 mongoose 추가됐는지 확인
+npm install body-parser --save : Client가 보내는 것을 받기 위함
+npm install nodemon --save -dev : nodemon은 서버를 재시작하지 않아도 파일 수정 내용을 감지해 업데이트 해준다.
+
+<스크립트 명령어 추가>
+package.json의 Script 안에 "start" : "node index.js"을 추가 : npm run start를 하면 node 앱을 실행한다는 의미
+package.json의 Script 안에 "backend" : "nodemon index.js" 추가 : npm run backend를 하면 nodemon으로 시작하겠다.
+
+<PostMan>
+postman : 개발한 API를 테스트할 때 사용
