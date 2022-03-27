@@ -1,0 +1,18 @@
+MySQL 기본 명령 :
+SHOW DATABASES; : DATABASE 보여줌
+create database DBNAME character set utf8; : DBNAME의 DB를 utf8로 생성
+
+USE DBNAME; : DBNAME의 Database 사용
+
+create table customer (
+     id int primary key auto_increment,
+     image varchar(1024),
+     name varchar(64),
+     birthday varchar(64),
+     gender varchar(64),
+     job varchar(64)
+     ) default character set utf8 collate utf8_general_ci ; : Database안의 Table 생성
+
+select * from customer; : customer TABLE의 모든 속성 출력
+
+insert into customer values(4, "https://placeimg.com/100/100/4", "air", "030303", "여자", "대학원생"); : 새 레코드 추가 
