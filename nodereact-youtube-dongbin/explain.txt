@@ -1,3 +1,5 @@
+npm install @material-ui/core : material-ui 패키지
+
 -Chap 07-
 package.json 작성후 두 개 설치
 npm install nodemon body-parser express
@@ -5,3 +7,6 @@ npm install -g nodemon
 
 -Chap 08-
 Rest API : Server와 Client 웹 Protocol 기반으로 Data를 주고받을 수 있게 해줌
+Proxy : React에서 Node API 호출을 위해 사용함
+npm install http-proxy-middleware : Proxy 설치
+그 후 front의 src안에 setupProxy.js를 설정한다.
