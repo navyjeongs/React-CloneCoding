@@ -7,11 +7,14 @@ import {
   TableHead,
   Paper,
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import "./App.css";
 import Customer from "./components/Customer";
+import { makeStyles } from "@material-ui/core/styles";
 
-const styles1 = (theme) => ({
+const useStyles = makeStyles({
   root: {
     width: "100%",
     overflowX: "auto",
@@ -19,39 +22,36 @@ const styles1 = (theme) => ({
   table: {
     minWidth: 1080,
   },
+  progress: {
+    margin: 10,
+  },
 });
-const customers = [
-  {
-    id: 1,
-    name: "navy",
-    birthday: "000101",
-    gender: "남자",
-    job: "대학생",
-    image: "https://placeimg.com/100/100/1",
-  },
-  {
-    id: 2,
-    name: "army",
-    birthday: "010101",
-    gender: "남자",
-    job: "대학원",
-    image: "https://placeimg.com/100/100/12",
-  },
-  {
-    id: 3,
-    name: "air",
-    birthday: "020202",
-    gender: "여자",
-    job: "고등학생",
-    image: "https://placeimg.com/100/100/3",
-  },
-];
 
 function App() {
+  const classes = useStyles();
+  const [customers, setCustomers] = useState([]);
+
+  /* useEffect에서 async를 사용할 땐 안으로 넣어야한다.
+  useEffect(async () => {
+    await axios
+      .get("/api/customers")
+      .then((getData) => setCustomers(getData.data));
+  }, []);
+  */
+  // 다음과 같이 useEffect안에 비동기 function을 하나 만들고 실행시키면 된다.
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get("./api/customers")
+        .then((result) => setCustomers(result.data));
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
-      <Paper className={styles1.root}>
-        <Table className={styles1.table}>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
           <TableHead>
             <TableCell>번호</TableCell>
             <TableCell>이미지</TableCell>
@@ -61,9 +61,11 @@ function App() {
             <TableCell>직업</TableCell>
           </TableHead>
           <TableBody>
-            {customers.map((props) => {
-              return <Customer customers={props} key={props.id} />;
-            })}
+            {customers !== 0
+              ? customers.map((props) => {
+                  return <Customer customers={props} key={props.id} />;
+                })
+              : " "}
           </TableBody>
         </Table>
       </Paper>
