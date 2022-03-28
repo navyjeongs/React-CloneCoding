@@ -33,6 +33,28 @@ app.get("/api/customers", (req, res) => {
   });
 });
 
+// 13장 사진 업로드
+const multer = require("multer");
+// ./upload에 사진저장
+const upload = multer({ dest: "./upload" });
+// client가 /image로 접근하면 ./upload와 매핑되게 할 수 있다.
+app.use("/image", express.static("./upload"));
+app.post("/api/customers", upload.single("image"), (req, res) => {
+  // ?에 data가 바인딩되어 들어간다.
+  let sql = "INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)";
+  let image = "http://localhost:5000/image/" + req.file.filename;
+  let name = req.body.name;
+  let birthday = req.body.birthday;
+  let gender = req.body.gender;
+  let job = req.body.job;
+  let params = [image, name, birthday, gender, job];
+
+  connection.query(sql, params, (err, rows, fields) => {
+    // 성공적으로 data가 입력되었으면 client에게 메세지 출력
+    res.send(rows);
+  });
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
