@@ -13,6 +13,7 @@ import axios from "axios";
 import "./App.css";
 import Customer from "./components/Customer";
 import { makeStyles } from "@material-ui/core/styles";
+import CustomerAdd from "./components/CustomerAdd";
 
 const useStyles = makeStyles({
   root: {
@@ -69,6 +70,7 @@ function App() {
           </TableBody>
         </Table>
       </Paper>
+      <CustomerAdd />
     </>
   );
 }
