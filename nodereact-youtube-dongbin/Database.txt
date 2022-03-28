@@ -15,4 +15,9 @@ create table customer (
 
 select * from customer; : customer TABLE의 모든 속성 출력
 
-insert into customer values(4, "https://placeimg.com/100/100/4", "air", "030303", "여자", "대학원생"); : 새 레코드 추가 
+insert into customer values(4, "https://placeimg.com/100/100/4", "air", "030303", "여자", "대학원생"); : 새 레코드 추가
+
+delete from customer where id = 5; : id가 5인 행(row) 삭제
+
+
+alter table 테이블명 auto_increment = 원하는 값; : auto_increment 값 줄이기
