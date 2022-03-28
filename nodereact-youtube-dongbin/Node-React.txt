@@ -15,4 +15,5 @@ npm install http-proxy-middleware : Proxy 설치
 npm install --save mysql : mysql 모듈 설치
 database.json : 데이터베이스 설정을 위한 파일(ignore 처리)
 
-
+-Chap 13-
+npm install --save multer : client가 업로드한 파일을 받아서 저장하기 위한 라이브러리
