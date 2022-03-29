@@ -28,9 +28,12 @@ const connection = mysql.createConnection({
 // 고객 정보 받아오는 API
 // client로 부터 /api/customers 주소로 요청이 오면 customer의 모든 data를 보내준다.
 app.get("/api/customers", (req, res) => {
-  connection.query("SELECT * FROM CUSTOMER", (err, rows, fields) => {
-    res.send(rows);
-  });
+  connection.query(
+    "SELECT * FROM CUSTOMER WHERE isDeleted = 0",
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  );
 });
 
 // 13장 사진 업로드
@@ -41,7 +44,7 @@ const upload = multer({ dest: "./upload" });
 app.use("/image", express.static("./upload"));
 app.post("/api/customers", upload.single("image"), (req, res) => {
   // ?에 data가 바인딩되어 들어간다.
-  let sql = "INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)";
+  let sql = "INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?, now(), 0)";
   let image = "http://localhost:5000/image/" + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
@@ -51,6 +54,14 @@ app.post("/api/customers", upload.single("image"), (req, res) => {
 
   connection.query(sql, params, (err, rows, fields) => {
     // 성공적으로 data가 입력되었으면 client에게 메세지 출력
+    res.send(rows);
+  });
+});
+
+app.delete("/api/customers/:id", (req, res) => {
+  let sql = "UPDATE CUSTOMER SET isDeleted = 1 WHERE ID = ?";
+  let params = [req.params.id];
+  connection.query(sql, params, (err, rows, fields) => {
     res.send(rows);
   });
 });

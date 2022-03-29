@@ -14,6 +14,7 @@ import "./App.css";
 import Customer from "./components/Customer";
 import { makeStyles } from "@material-ui/core/styles";
 import CustomerAdd from "./components/CustomerAdd";
+import CustomerDelete from "./components/CustomerDelete";
 
 const useStyles = makeStyles({
   root: {
@@ -60,6 +61,7 @@ function App() {
             <TableCell>생년월일</TableCell>
             <TableCell>성별</TableCell>
             <TableCell>직업</TableCell>
+            <TableCell>설정</TableCell>
           </TableHead>
           <TableBody>
             {customers !== 0
