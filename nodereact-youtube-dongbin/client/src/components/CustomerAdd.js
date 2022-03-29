@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import { post } from "axios";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@material-ui/core";
 
 const CustomerAdd = () => {
   const [info, setInfo] = useState({
@@ -62,30 +75,70 @@ const CustomerAdd = () => {
     });
   };
 
-  console.log(info);
+  // materialUI
+  const [open, setOpen] = useState(false);
+  const openFunc = () => {
+    setOpen(true);
+  };
+  const closeFunc = () => {
+    setOpen(false);
+  };
+
   return (
     <>
-      <form onSubmit={onSubmitFunc}>
-        프로필 사진 : &nbsp;
-        <input type="file" onChange={fileChangeFunc} />
-        <br />
-        이름 : &nbsp;
-        <input type="text" onChange={onChangeFunc} id="userName" />
-        <br />
-        생일 : &nbsp;
-        <input type="number" onChange={onChangeFunc} id="birthday" />
-        <br />
-        성별 : &nbsp;
-        <select onChange={onChangeFunc} id="gender">
-          <option>남자</option>
-          <option>여자</option>
-        </select>
-        <br />
-        직업 : &nbsp;
-        <input type="text" onChange={onChangeFunc} id="job" />
-        <br />
-        <button type="submit">완료</button>
-      </form>
+      <Button variant="outlined" onClick={openFunc}>
+        Add Client
+      </Button>
+      <Dialog open={open} onClose={closeFunc}>
+        <DialogTitle>Client Info</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Add customer, please input</DialogContentText>
+
+          <form onSubmit={onSubmitFunc}>
+            프로필 사진 : &nbsp;
+            <input type="file" onChange={fileChangeFunc} />
+            <TextField
+              label="이름"
+              type="text"
+              onChange={onChangeFunc}
+              id="userName"
+            />
+            <br />
+            <TextField
+              label="생년월일"
+              type="number"
+              onChange={onChangeFunc}
+              id="birthday"
+            />
+            <br />
+            <br />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">성별</InputLabel>
+              <Select
+                label="성별"
+                onChange={onChangeFunc}
+                id="gender"
+                labelId="demo-simple-select-label"
+              >
+                <MenuItem value={"남자"}>남자</MenuItem>
+                <MenuItem value={"여자"}>여자</MenuItem>
+              </Select>
+            </FormControl>
+            <br />
+            <TextField
+              label="직업"
+              type="text"
+              onChange={onChangeFunc}
+              id="job"
+            />
+            <br />
+            <DialogActions>
+              <Button onClick={closeFunc}>닫기</Button>
+              <Button type="submit">등록 완료</Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
