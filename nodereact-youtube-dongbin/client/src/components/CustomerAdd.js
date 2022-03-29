@@ -59,7 +59,13 @@ const CustomerAdd = () => {
   };
 
   const onChangeFunc = (e) => {
-    const target = e.target.id;
+    let target;
+    if (e.target.id !== undefined) {
+      target = e.target.id;
+    } else {
+      target = e.target.name;
+    }
+    console.log(e);
     setInfo((prev) => {
       // [target] : 계산된 프로퍼티로 프로퍼티 이름을 변수 target에서 가져오겠다는 의미이다.
       return { ...prev, [target]: e.target.value };
@@ -112,18 +118,18 @@ const CustomerAdd = () => {
             />
             <br />
             <br />
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">성별</InputLabel>
-              <Select
-                label="성별"
-                onChange={onChangeFunc}
-                id="gender"
-                labelId="demo-simple-select-label"
-              >
-                <MenuItem value={"남자"}>남자</MenuItem>
-                <MenuItem value={"여자"}>여자</MenuItem>
-              </Select>
-            </FormControl>
+            <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+            <Select
+              defaultValue="남자"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Gender"
+              onChange={onChangeFunc}
+              name="gender"
+            >
+              <MenuItem value="남자">남자</MenuItem>
+              <MenuItem value="여자">여자</MenuItem>
+            </Select>
             <br />
             <TextField
               label="직업"

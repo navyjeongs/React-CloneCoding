@@ -1,5 +1,5 @@
+import { Button } from "@material-ui/core";
 import React from "react";
-
 const CustomerDelete = (props) => {
   const deleteCustomer = (id) => {
     const url = "/api/customers/" + id;
@@ -11,13 +11,20 @@ const CustomerDelete = (props) => {
   };
 
   const deleteFunc = () => {
+    const realDelete = window.confirm("삭제하시겠습니까?");
     console.log(props.id);
-    deleteCustomer(props.id);
+    if (realDelete) {
+      deleteCustomer(props.id);
+    } else {
+      window.alert("삭제를 취소하였습니다.");
+    }
   };
 
   return (
     <>
-      <button onClick={deleteFunc}>삭제</button>
+      <Button variant="outlined" onClick={deleteFunc}>
+        삭제
+      </Button>
     </>
   );
 };
