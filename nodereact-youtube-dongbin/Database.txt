@@ -4,6 +4,8 @@ create database DBNAME character set utf8; : DBNAME의 DB를 utf8로 생성
 
 USE DBNAME; : DBNAME의 Database 사용
 
+DESC customer : customer 속성확인
+
 create table customer (
      id int primary key auto_increment,
      image varchar(1024),
@@ -21,3 +23,8 @@ delete from customer where id = 5; : id가 5인 행(row) 삭제
 
 
 alter table 테이블명 auto_increment = 원하는 값; : auto_increment 값 줄이기
+
+alter table 테이블명 add createdDate DATETIME; : 새 속성추가
+alter table customer add isDeleted INT : 새 속성 추가
+
+update customer set createdDate = NOW(); : 기존 레코드에 값 추가
