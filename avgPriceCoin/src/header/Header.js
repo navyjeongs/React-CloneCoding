@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div>
       <h1 className="title">
-        <Link to="/">How Many Coins Can I get?</Link>
+        <Link to="/">평단가 계산기</Link>
 
         {/* <button>
           <Link to="/UpbitList" className="CoinList">
@@ -14,11 +14,11 @@ export default function Header() {
           </Link>
         </button> */}
         <Button variant="outlined">
-          <Link to="/Recover">평단가 계산기</Link>
+          <Link to="/GetCoin">코인 가지기</Link>
         </Button>
         <Button variant="outlined">
           <Link to="/CoinList" className="CoinList">
-            코인 리스트
+            코인 목록
           </Link>
         </Button>
       </h1>
