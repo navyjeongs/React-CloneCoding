@@ -1,10 +1,10 @@
-import Input from "./input/input";
+import Input from "./getCoin/input";
 import Header from "./header/Header";
-import CoinList from "./CoinList";
+import CoinList from "./coinList/CoinList";
 import { BrowserRouter, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import UpbitList from "./UpbitList";
-import Recover from "./Recover";
+import AvgPriceCoin from "./avgPriceCoin/AvgPriceCoin";
 
 function App() {
   return (
@@ -13,10 +13,9 @@ function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={<Input />} />
+          <Route path="/" element={<AvgPriceCoin />} />
           <Route path="/CoinList" element={<CoinList />} />
-          <Route path="/UpbitList" element={<UpbitList />} />
-          <Route path="/Recover" element={<Recover />} />
+          <Route path="/GetCoin" element={<Input />} />
         </Routes>
       </BrowserRouter>
     </>
