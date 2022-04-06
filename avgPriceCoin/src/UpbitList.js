@@ -45,7 +45,7 @@ export default function UpbitList() {
     <>
       <dl>
         {krwCoin.slice(1, 3).map((coin) => (
-          <li key={coin.market}>
+          <li key={coin.rank}>
             {coin.korean_name}의 최고가 : {getHighPricefunc(coin.market)}
           </li>
         ))}

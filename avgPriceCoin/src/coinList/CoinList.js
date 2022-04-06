@@ -27,16 +27,15 @@ export default function CoinList() {
     return coinNum;
   };
 
-  useEffect( () => {
+  useEffect(() => {
     const a = new Date();
     setDate(a.toLocaleString());
-  },[])
+  }, []);
 
   // route 이동 전 컴포넌트에서 state바꾸려는 시도가 있을 때 사용한다.
   useEffect(() => {
     return () => setLoading(false);
   }, []);
-
 
   // 2. h2 태그와 loading 상태를 나타내는 태그를 작성한다.
   // 6. h2 태그 옆의 코인의 수와 dl과 li를 작성한다.
@@ -46,9 +45,10 @@ export default function CoinList() {
       {loading ? <strong>Loading...</strong> : null}
       <dl>
         {coins.map((coin) => (
-          <li key={coin.symbol}>
+          <li key={coin.rank}>
             {coinNumfunc()} : {coin.name}({coin.symbol}), $
-            {Math.round(coin.quotes.USD.price * 100000) / 100000} USD, {coin.quotes.USD.price * 1196} Won
+            {Math.round(coin.quotes.USD.price * 100000) / 100000} USD,{" "}
+            {coin.quotes.USD.price * 1196} Won
           </li>
         ))}
       </dl>

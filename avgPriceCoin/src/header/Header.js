@@ -14,7 +14,7 @@ export default function Header() {
           </Link>
         </button> */}
         <Button variant="outlined">
-          <Link to="/GetCoin">코인 가지기</Link>
+          <Link to="/GetCoin">코인 계산기</Link>
         </Button>
         <Button variant="outlined">
           <Link to="/CoinList" className="CoinList">

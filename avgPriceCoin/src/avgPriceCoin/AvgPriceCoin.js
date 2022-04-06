@@ -53,25 +53,28 @@ const AvgPriceCoin = () => {
     setFinalAvg(final);
   };
 
-
   useEffect(() => {
     return () => setLoading(false);
   }, []);
 
   return (
     <div className="text1">
-      
-      <h2 style={{display:"inline"}}>평단가를 알고싶은 코인을 선택해주세요.</h2>
-      <h4 style={{display:"inline"}}>(coinPaprika 기준)</h4>
-      
+      <h2 style={{ display: "inline" }}>
+        평단가를 알고싶은 코인을 선택해주세요.
+      </h2>
+      <h4 style={{ display: "inline" }}>
+        (coinPaprika의 상위 100개 코인만 있습니다.)
+      </h4>
+
       {loading ? (
         "Loading..."
       ) : (
         <>
-          <br/><br></br>
+          <br />
+          <br></br>
           <Autocomplete
-          className="text2"
-            sx={{ width: 300}}
+            className="text2"
+            sx={{ width: 300 }}
             value={value}
             onChange={(e, newValue) => {
               setValue(newValue);
@@ -91,10 +94,9 @@ const AvgPriceCoin = () => {
               />
             )}
           />
-          </>
-  
+        </>
       )}
-      <br/>
+      <br />
       <div>{value === "" ? "" : <div>선택한 코인 :{value}</div>}</div>
       <br></br>
       <label>현재 보유 수량 :</label>
