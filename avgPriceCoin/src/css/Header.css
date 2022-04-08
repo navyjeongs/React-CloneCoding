@@ -1,0 +1,17 @@
+.title {
+  color: olivedrab;
+  text-align: center;
+}
+
+hr {
+  background-color: orange;
+}
+
+.title > .CoinList {
+  float: right;
+  color: orange;
+  text-align: right;
+}
+a {
+  text-decoration: none;
+}
