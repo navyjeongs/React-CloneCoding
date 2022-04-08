@@ -1,5 +1,16 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import React, { useState } from "react";
 const CustomerDelete = (props) => {
   const deleteCustomer = (id) => {
     const url = "/api/customers/" + id;
@@ -14,16 +25,27 @@ const CustomerDelete = (props) => {
     const realDelete = window.confirm("삭제하시겠습니까?");
     console.log(props.id);
     if (realDelete) {
-      deleteCustomer(props.id);
+      deleteCustomer(props.id.id);
     } else {
       window.alert("삭제를 취소하였습니다.");
     }
+  };
+
+  const updateFunc = () => {
+    return (
+      <div>
+        <button>asdasd</button>
+      </div>
+    );
   };
 
   return (
     <>
       <Button variant="outlined" onClick={deleteFunc}>
         삭제
+      </Button>
+      <Button variant="outlined" onClick={updateFunc}>
+        수정
       </Button>
     </>
   );
