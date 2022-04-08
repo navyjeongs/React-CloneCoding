@@ -24,3 +24,5 @@ yarn-error.log*
 
 # ignore folder #
 testignore/
+
+explain.txt
