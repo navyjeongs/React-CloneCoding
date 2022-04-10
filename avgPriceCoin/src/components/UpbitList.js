@@ -2,17 +2,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/UpbitList.css";
 import { Link } from "react-router-dom";
+import AvgPriceCoin from "./AvgPriceCoin";
 // 배열에 비동기 작업을 실시할 때 알아두면 좋을법한 이야기들
 const UpbitList = () => {
   // 전체 coinList중 krw만 저장
-  const [krwCoin, setKrwCoin] = useState([]);
-  const [detailCoin, setDetailCoin] = useState("");
+  const [krwCoin, setKrwCoin] = useState([
+    {
+      korean_name: "선택",
+      english_name: "select",
+      market: "select",
+    },
+  ]);
+  const [detailCoin, setDetailCoin] = useState([{}]);
   const options = { method: "GET", headers: { Accept: "application/json" } };
   useEffect(() => {
     fetch("https://api.upbit.com/v1/market/all?isDetails=false", options)
       .then((response) => response.json())
       .then((upbitCoin) => {
-        setKrwCoin(upbitCoin.filter((coin) => coin.market.startsWith("KRW")));
+        setKrwCoin([
+          ...krwCoin,
+          ...upbitCoin.filter((coin) => coin.market.startsWith("KRW")),
+        ]);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -31,6 +41,7 @@ const UpbitList = () => {
   const getCoinName = (marketCode) => {
     for (let i = 0; i < krwCoin.length; i++) {
       if (marketCode === krwCoin[i].market) {
+        console.log(krwCoin[i]);
         return (
           <div>
             {krwCoin[i].korean_name + "(" + krwCoin[i].english_name + ")"}
@@ -43,6 +54,7 @@ const UpbitList = () => {
   return (
     <>
       <div className="detail">
+        <h2>평단가를 구하고 싶은 코인을 선택하세요.</h2>
         <select onChange={onChangefunc}>
           {krwCoin.map((coin) => {
             return (
@@ -56,8 +68,8 @@ const UpbitList = () => {
             );
           })}
         </select>
-
-        {detailCoin === "" ? (
+        {console.log(detailCoin[0])}
+        {detailCoin[0] === "" ? (
           <>
             <br />
             "Select Coin!"
@@ -81,6 +93,7 @@ const UpbitList = () => {
           </div>
         )}
       </div>
+      <AvgPriceCoin />
     </>
   );
 };
