@@ -124,7 +124,7 @@ const AvgPriceCoin = () => {
           <input
             type="number"
             step="0.01"
-            placeholder={"현시세 :" + marketPriceFunc(value).toFixed(2)}
+            placeholder={"현시세 :" + marketPriceFunc(value)}
             onChange={buyCoinAvgFunc}
           ></input>
           <button onClick={finalAvgFunc}>최종 계산!</button>
